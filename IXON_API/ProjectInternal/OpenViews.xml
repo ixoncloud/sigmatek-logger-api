@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<OpenViews>
+	<View Key="IXON_LoggerAPI_Interface" Type="2" LineNr="50"/>
+	<View Key="IXON_Log" Type="0"/>
+	<View Key="cIXONConv5Int5Str" Type="2" LineNr="81"/>
+	<View Key=".\Network\IXON_Log\IXON_Log.lcn" Type="4" LineNr="1703"/>
+	<View Key=".\Network\IXON_Log\IXON_Log.lcn" Type="4" LineNr="1703"/>
+	<Setting Variable="OutputDebugger" Value="2"/>
+</OpenViews>

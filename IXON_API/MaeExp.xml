@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<File CRC="8E366FCD" Version="1.1">
+	<Classes>
+		<Class
+			Name     = "_TCPIPClient"
+			Datatype = "_TCPIPClient::_FSM_TCPIP_CLIENT"
+			Size     = "280"
+			Guid     = "730104E9-8CFE-4EAC-BC6B-0D4A0F12B6A4">
+			<Servers>
+				<Server Name="TaskName" Datatype="UDINT" Guid="20B3EDCA-D8B0-47DA-B242-CD7C6EC2495B" WriteProtected="true"/>
+				<Server Name="SemaName01" Datatype="UDINT" Guid="C254FD60-38D0-42A6-AD37-F0F54392E23F" WriteProtected="true"/>
+				<Server Name="SemaName02" Datatype="UDINT" Guid="1A4BBB71-0704-4AA5-9FD4-9A1C0415D984" WriteProtected="true"/>
+			</Servers>
+			<Objects>
+				<Object Name="StrSemaName01" Datatype="String" Guid="E85D366E-9709-4F3D-AE62-C1B016CACD7B"/>
+				<Object Name="StrSemaName02" Datatype="String" Guid="10DC5FEF-3685-401A-A366-325AC26C1ADC"/>
+				<Object Name="StrTaskName" Datatype="String" Guid="C0143FE0-3A33-4991-A32A-076BDAE27564"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "_TCPIPClientInterface"
+			Datatype = "DINT"
+			Size     = "76"
+			Guid     = "8FC2F34A-F6F1-4780-961A-0742296EBCA9">
+		</Class>
+		<Class
+			Name     = "cIXONConv10Value"
+			Datatype = "DINT"
+			Size     = "1580"
+			Guid     = "FCBA7882-FDF0-4532-A571-BFB56A21CE41">
+			<Servers>
+				<Server Name="sName1" Datatype="STRING" Guid="BF92250D-89F2-4FC4-B68B-6BD9588CCE7A" WriteProtected="false"/>
+				<Server Name="sName2" Datatype="STRING" Guid="0C59890C-E217-430B-88EB-24DA6D108765" WriteProtected="false"/>
+				<Server Name="sName3" Datatype="STRING" Guid="8A97BD72-7E5F-415E-A828-EB16E0C5438A" WriteProtected="false"/>
+				<Server Name="sName4" Datatype="STRING" Guid="5306CDCF-1866-476C-95DC-9D4B170A71E5" WriteProtected="false"/>
+				<Server Name="sName5" Datatype="STRING" Guid="34581185-52F2-4E6B-AEC5-DE7B2CCDBC82" WriteProtected="false"/>
+				<Server Name="sName6" Datatype="STRING" Guid="F596C2EB-FAD8-48A9-8DD7-11F305994A4A" WriteProtected="false"/>
+				<Server Name="sName7" Datatype="STRING" Guid="028D294B-A263-42B9-A091-BEFED9F7DF00" WriteProtected="false"/>
+				<Server Name="sName8" Datatype="STRING" Guid="BD74E854-497C-4BF6-8020-8F4AD2BA54EB" WriteProtected="false"/>
+				<Server Name="sName9" Datatype="STRING" Guid="C90001C4-6562-438E-B7C6-1C4A9105DD32" WriteProtected="false"/>
+				<Server Name="sName10" Datatype="STRING" Guid="A0A21C64-7935-45D4-9B9B-70A5EE13C4A0" WriteProtected="false"/>
+			</Servers>
+			<Objects>
+				<Object Name="Name1" Datatype="String" Guid="ED1D93E9-6167-450B-A01D-52BD14DE9B45"/>
+				<Object Name="Name10" Datatype="String" Guid="A4E09930-29AB-49C9-933C-F192B824203E"/>
+				<Object Name="Name2" Datatype="String" Guid="B56D14CB-E051-4F97-97D6-C8CF19E2D47D"/>
+				<Object Name="Name3" Datatype="String" Guid="0EA46833-320B-4754-86A7-FDA42D9EDF59"/>
+				<Object Name="Name4" Datatype="String" Guid="56889092-8474-4457-92D6-DBCC222A2C85"/>
+				<Object Name="Name5" Datatype="String" Guid="59F2F4CD-B3ED-4735-8F4A-C95950B3D021"/>
+				<Object Name="Name6" Datatype="String" Guid="FBFA918D-48D1-4206-BC20-6A971BC7D5D4"/>
+				<Object Name="Name7" Datatype="String" Guid="62D9003A-7850-4412-A631-6F9AD00F481C"/>
+				<Object Name="Name8" Datatype="String" Guid="63E94543-443D-460C-AFE1-47337A4378F6"/>
+				<Object Name="Name9" Datatype="String" Guid="B906C078-F4A4-4891-A135-4B8D3037023C"/>
+				<Object Name="TriggerName" Datatype="String" Guid="93FF9C49-A594-4EEB-B482-99D6020A1837"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "cIXONConv5Int5Str"
+			Datatype = "DINT"
+			Size     = "1752"
+			Guid     = "E3BDDB1A-EFE5-4CB7-A510-5BCC11A777EE">
+			<Servers>
+				<Server Name="sIntegerName1" Datatype="STRING" Guid="BB0A2F7A-F3E1-4875-A9CC-F50E346B1D4B" WriteProtected="false"/>
+				<Server Name="sIntegerName2" Datatype="STRING" Guid="89BF919B-C3A1-4C2C-9D3F-294E44655CCD" WriteProtected="false"/>
+				<Server Name="sIntegerName3" Datatype="STRING" Guid="AA38F02A-1AE3-4AAA-AF0D-FABEDFBAACF8" WriteProtected="false"/>
+				<Server Name="sIntegerName4" Datatype="STRING" Guid="A75CCDB9-A52D-441C-A724-6198C26B7A2F" WriteProtected="false"/>
+				<Server Name="sIntegerName5" Datatype="STRING" Guid="AF7E85D9-2784-4D96-838A-96F52BA18BE1" WriteProtected="false"/>
+				<Server Name="sStringName1" Datatype="STRING" Guid="857A065F-BC26-42BD-893E-CD61917C8193" WriteProtected="false"/>
+				<Server Name="sStringName2" Datatype="STRING" Guid="89A25A7E-35E0-4E9F-AA76-3051985F1C0E" WriteProtected="false"/>
+				<Server Name="sStringName3" Datatype="STRING" Guid="DF50B6DF-ABAE-456B-9EEA-7FD34039DF38" WriteProtected="false"/>
+				<Server Name="sStringName4" Datatype="STRING" Guid="BBF2B2E5-3BD4-4D5F-9EB3-BA431911BA40" WriteProtected="false"/>
+				<Server Name="sStringName5" Datatype="STRING" Guid="460F7B64-84C8-4B05-A6A1-C9B5A95586C5" WriteProtected="false"/>
+			</Servers>
+			<Objects>
+				<Object Name="IntegerName1" Datatype="String" Guid="F93DB2A8-0A4C-4B0E-A28C-88ECA605EB81"/>
+				<Object Name="IntegerName2" Datatype="String" Guid="951665FB-8A72-4284-B5E7-E578A10BB74A"/>
+				<Object Name="IntegerName3" Datatype="String" Guid="4A1D6B93-0B05-4827-B103-307B6DDD0B75"/>
+				<Object Name="IntegerName4" Datatype="String" Guid="66EFAA76-719A-4F03-A840-8EBD8249FE82"/>
+				<Object Name="IntegerName5" Datatype="String" Guid="D8D082DD-A3BA-4B3B-8A27-1AD54D0BF590"/>
+				<Object Name="String1" Datatype="String" Guid="E416402A-D512-48D2-91E6-16EC4A14C9F1"/>
+				<Object Name="String2" Datatype="String" Guid="68EA2F47-B6AA-4D7B-874E-B3049BEACF4D"/>
+				<Object Name="String3" Datatype="String" Guid="FE9B355F-D02D-40AC-85CA-76D9FF4DFE3E"/>
+				<Object Name="String4" Datatype="String" Guid="499FE4AE-659A-4AD4-ADA0-B2C6CF9623EB"/>
+				<Object Name="String5" Datatype="String" Guid="140C7BB8-9488-4F8D-A35A-F5D37CC9F439"/>
+				<Object Name="StringName1" Datatype="String" Guid="D7487C1F-73A6-4732-B323-BB8331917346"/>
+				<Object Name="StringName2" Datatype="String" Guid="A32C14CC-CE72-4B05-9705-F85FCBE4FFE8"/>
+				<Object Name="StringName3" Datatype="String" Guid="FFFD2035-0C8B-4F2F-B17B-E61EA13F360A"/>
+				<Object Name="StringName4" Datatype="String" Guid="FA010D91-0058-4E87-B5C5-740D447DE65C"/>
+				<Object Name="StringName5" Datatype="String" Guid="55DC32B3-3A48-4A13-9191-CF91E37467A3"/>
+				<Object Name="TriggerName" Datatype="String" Guid="AB716C2D-C763-484C-8C9D-E2FE1ADF71A7"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "IXON_LoggerAPI"
+			Datatype = "DINT"
+			Size     = "96"
+			Guid     = "ACE590F9-5AD3-4949-96BA-527A75CCE42D">
+			<Servers>
+				<Server Name="sIPAddrIXON" Datatype="STRING" Guid="17637C41-D313-4E37-94DD-E3B069963481" WriteProtected="false"/>
+				<Server Name="sIPAddrPLC" Datatype="STRING" Guid="DC20E747-ACC1-40A1-AEA9-56446F3CB2F8" WriteProtected="false"/>
+				<Server Name="sPasswordIXON" Datatype="STRING" Guid="A3E8519A-7F50-4074-8FEC-F80C849D5529" WriteProtected="false"/>
+				<Server Name="sData" Datatype="STRING" Guid="2AC21450-19E0-4156-891A-62A63DBB9C04" WriteProtected="false"/>
+			</Servers>
+			<Objects>
+				<Object Name="_TCPIPClient1" Datatype="_TCPIPClient" Guid="96D69589-595B-4626-87AA-30E08C7643FF"/>
+				<Object Name="MyTCPIPClient1" Datatype="IXON_LoggerAPI_Interface" Guid="54A2CB7B-47E5-419E-BD69-32C01D38E280"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "IXON_LoggerAPI_Interface"
+			Datatype = "DINT"
+			Base     = "_TCPIPClientInterface"
+			Size     = "21904"
+			Guid     = "6AF6263F-BF0F-417D-A26B-4288044BDBBA">
+			<Types>
+				<Type Name="teUSER_TCP_STEPS" Datatype="UDINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="UTS_Idle" Value="0"/>
+						<Type Name="UTS_Connect" Value="1"/>
+						<Type Name="UTS_CheckConnect" Value="2"/>
+						<Type Name="UTS_ConnectIXON" Value="3"/>
+						<Type Name="UTS_WaitConnectIXON" Value="4"/>
+						<Type Name="UTS_WaitData" Value="5"/>
+						<Type Name="UTS_SendData" Value="6"/>
+						<Type Name="UTS_WaitSendData" Value="7"/>
+						<Type Name="UTS_Disconnect" Value="8"/>
+						<Type Name="UTS_Error" Value="9"/>
+					</Elements>
+				</Type>
+			</Types>
+			<Servers>
+				<Server Name="sIPAddrIXON" Datatype="STRING" Guid="9CB96FC5-4D9E-4E2F-9B1F-5647047B2EF1" WriteProtected="false"/>
+				<Server Name="sIPAddrPLC" Datatype="STRING" Guid="798E83DD-2CBF-44A1-B3E3-7D38B77EF7CC" WriteProtected="false"/>
+				<Server Name="sPasswordIXON" Datatype="STRING" Guid="85E29B6D-2B14-4EB4-82C1-100A810AF106" WriteProtected="false"/>
+				<Server Name="sSendDelay" Datatype="UDINT" Guid="C2BC30EB-200C-4EB9-8A3E-5719235E9223" WriteProtected="false"/>
+				<Server Name="sReconnectDelay" Datatype="UDINT" Guid="D95B0779-3A9B-4210-8C42-379568F6C3AB" WriteProtected="false"/>
+				<Server Name="sTCPStep" Datatype="IXON_LoggerAPI_Interface::teUSER_TCP_STEPS" Guid="ACE1855D-C7BA-4F13-808F-C0AD46DC9E0E" WriteProtected="false"/>
+				<Server Name="sData" Datatype="STRING" Guid="CD7BECBD-65A1-4857-B038-B1F70CDB5E66" WriteProtected="false"/>
+			</Servers>
+			<Objects>
+				<Object Name="ST_IPAddrIXON" Datatype="String" Guid="E49A65E0-4286-48BA-9FA8-8BE264404598"/>
+				<Object Name="ST_IPAddrPLC" Datatype="String" Guid="9380FF98-48E8-4706-8849-F0105D5BD7B2"/>
+				<Object Name="ST_PasswordIXON" Datatype="String" Guid="73AFCC93-C9EF-43C7-8BD6-0FAA4DC69D31"/>
+				<Object Name="ST_SendData" Datatype="String" Guid="F2748B89-9CE7-4D65-97EB-2774AB8B6196"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "String"
+			Datatype = "UDINT"
+			Base     = "StringInternal"
+			Size     = "60"
+			Guid     = "26C84422-A6E4-4372-A53C-A964595DA01D">
+			<Servers>
+				<Server Name="Data" Datatype="STRING" Guid="81990015-D505-4977-9326-733789F9FEAA" WriteProtected="false"/>
+			</Servers>
+		</Class>
+		<Class
+			Name     = "StringInternal"
+			Datatype = "UDINT"
+			Base     = "VirtualBaseInit"
+			Size     = "48"
+			Guid     = "2C12408A-7CCA-458A-912B-98C634EE4BD9">
+		</Class>
+		<Class
+			Name     = "VirtualBaseInit"
+			Datatype = "UDINT"
+			Size     = "12"
+			Guid     = "9FBB5A34-CCCF-441F-A614-0CCECBD76648">
+		</Class>
+	</Classes>
+	<Objects>
+		<Object Name="BatchIXONLog" Datatype="cIXONConv5Int5Str" Guid="94590DD8-2CA1-4EBE-BF81-E060F82F14D3"/>
+		<Object Name="GrippersIXONLog" Datatype="cIXONConv10Value" Guid="13F457B4-ABD3-4023-8971-46D23519708B"/>
+		<Object Name="IXON_LoggerAPI1" Datatype="IXON_LoggerAPI" Guid="2109D07A-F9BD-4D6D-9FF2-A8E18D70AAFF"/>
+	</Objects>
+	<UnitDefinitions>
+		<UnitGrp Name="Acceleration">
+			<Units>
+				<Unit Name="mmPsec2" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Angle">
+			<Units>
+				<Unit Name="deg" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Area">
+			<Units>
+				<Unit Name="mm2" Factor="1" Divisor="10"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Force">
+			<Units>
+				<Unit Name="kN" Factor="1" Divisor="1000" Base="N"/>
+				<Unit Name="N" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Length">
+			<Units>
+				<Unit Name="m" Factor="1" Divisor="1000" Base="mm"/>
+				<Unit Name="mm" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Memory">
+			<Units>
+				<Unit Name="GB" Factor="1" Divisor="1024" Base="MB"/>
+				<Unit Name="kB" Factor="1" Divisor="1024"/>
+				<Unit Name="MB" Factor="1" Divisor="1024" Base="kB"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Pressure">
+			<Units>
+				<Unit Name="bar" Factor="1" Divisor="1000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Revolution">
+			<Units>
+				<Unit Name="RPM" Factor="1" Divisor="1000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Speed">
+			<Units>
+				<Unit Name="mlpmin" Factor="1" Divisor="1"/>
+				<Unit Name="mmpsec" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Time">
+			<Units>
+				<Unit Name="hours" Factor="1" Divisor="60" Base="min"/>
+				<Unit Name="min" Factor="1" Divisor="60" Base="secs"/>
+				<Unit Name="ms" Factor="1" Divisor="1"/>
+				<Unit Name="sec" Factor="1" Divisor="1000"/>
+				<Unit Name="secs" Factor="1" Divisor="1000" Base="ms"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Volume">
+			<Units>
+				<Unit Name="ccm" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+	</UnitDefinitions>
+</File>

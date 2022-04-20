@@ -1,0 +1,14 @@
+Identifier,Address,Name,Logging interval,Retention policy,Edge aggregator,On change expiry,Log event,Trigger address,Trigger condition,Trigger threshold
+last-gripper-with-comm-error,LastGripperWithCommError,LastGripperWithCommError,36s,260w,,,trigger,TrigGrippers,==,true
+nr-of-teaching,NrOfTeaching,NrOfTeaching,36s,260w,,,trigger,TrigGrippers,==,true
+batch-name,BatchName,BatchName,36s,260w,,,trigger,TrigBatch,==,true
+nr-of-comm-errors,NrOfCommErrors,NrOfCommErrors,36s,260w,,,trigger,TrigGrippers,==,true
+gds-error,GDSError,GDSError,36s,260w,,,trigger,TrigGrippers,==,true
+teaching-pos-difference,TeachingPosDifference,TeachingPosDifference,36s,260w,,,trigger,TrigGrippers,==,true
+end-batch,EndBatch,EndBatch,36s,260w,,,trigger,TrigBatch,==,true
+gripper-with-biggest-pos-diff,GripperWithBiggestPosDiff,GripperWithBiggestPosDiff,36s,260w,,,trigger,TrigGrippers,==,true
+start-batch,StartBatch,StartBatch,36s,260w,,,trigger,TrigBatch,==,true
+off-error,OFFError,OFFError,36s,260w,,,trigger,TrigGrippers,==,true
+move-retries,MoveRetries,MoveRetries,36s,260w,,,trigger,TrigGrippers,==,true
+pickup-cycle,PickupCycle,PickupCycle,36s,260w,,,trigger,TrigEfficiency,==,true
+nr-of-planting-cycles,NrOfPlantingCycles,NrOfPlantingCycles,36s,260w,,,trigger,TrigEfficiency,==,true

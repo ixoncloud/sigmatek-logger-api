@@ -1,0 +1,4 @@
+Name,Address,Condition,Threshold,Description
+TrigBatch,TrigBatch,==,true,
+TrigEfficiency,TrigEfficiency,==,true,
+TrigGrippers,TrigGrippers,==,true,
