@@ -1,7 +1,6 @@
 # Sigmatek IXON LoggerAPI Example Project
 
-This project consists of function blocks for a Sigmatek PLC to send data event-based or at high speed to the IXON Router.\
-The IXON Router in turn sends it to the IXON Cloud. The [LoggerAPI](https://support.ixon.cloud/hc/en-us/articles/360018835499-LoggerAPI) of the IXON router is used to accept the data from the Sigmatek PLC
+This project consists of function blocks for a Sigmatek PLC to send data event-based or at high speed to the IXON Router. The IXON Router in turn sends it to the IXON Cloud. The [LoggerAPI](https://support.ixon.cloud/hc/en-us/articles/360018835499-LoggerAPI) of the IXON router is used to accept the data from the Sigmatek PLC
 
 ## Requirements
 
