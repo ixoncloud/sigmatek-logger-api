@@ -67,7 +67,7 @@
 		<Client Name="StringName3" Required="true" Internal="true"/>
 		<Client Name="StringName4" Required="true" Internal="true"/>
 		<Client Name="StringName5" Required="true" Internal="true"/>
-		<Client Name="ToString" Required="true" Internal="false"/>
+		<Client Name="ToIXON_LoggerAPI" Required="true" Internal="false"/>
 		<Client Name="TriggerName" Required="true" Internal="true"/>
 	</Channels>
 	<Separators>
@@ -344,7 +344,7 @@ cIXONConv5Int5Str : CLASS
 	sStringName5 	: SvrChCmd_UDINT;
 	sString5 	: SvrChCmd_UDINT;
   //Clients:
-	ToString 	: CltChCmd_VirtualBaseInit;
+	ToIXON_LoggerAPI 	: CltChCmd_IXON_LoggerAPI_Interface;
 	ocSigCLib 	: CltChCmd_SigCLib;
 	TriggerName 	: CltChCmd_String;
 	String1 	: CltChCmd_String;
@@ -611,8 +611,8 @@ cIXONConv5Int5Str : CLASS
 END_CLASS;
 
 #pragma using String
+#pragma usingLtd IXON_LoggerAPI_Interface
 #pragma usingLtd SigCLib
-#pragma usingLtd VirtualBaseInit
 
 
 //}}LSL_DECLARATION
@@ -652,7 +652,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::cIXONConv5Int5Str.sStringName5.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(1780019138), "sStringName5", 
 (::cIXONConv5Int5Str.sString5.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(216638640), "sString5", 
 //Clients:
-(::cIXONConv5Int5Str.ToString.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3649696585), "ToString", TO_UDINT(3232495061), "VirtualBaseInit", 1$UINT, 3$UINT, 
+(::cIXONConv5Int5Str.ToIXON_LoggerAPI.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(839802528), "ToIXON_LoggerAPI", TO_UDINT(357781282), "IXON_LoggerAPI_Interface", 0$UINT, 0$UINT, 
 (::cIXONConv5Int5Str.ocSigCLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(3653330470), "ocSigCLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 32$UINT, 
 (::cIXONConv5Int5Str.TriggerName.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2591045562), "TriggerName", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::cIXONConv5Int5Str.String1.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(677614747), "String1", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
@@ -1005,7 +1005,7 @@ FUNCTION cIXONConv5Int5Str::BuildConfigString
   BuildTrigger(Value := 0);
   
   length := _strlen(src:=#vDataString[0]);
-  ToString.WriteDataOff(udLen := length + 1, udOff := 0, pData := #vDataString[0]);   
+  ToIXON_LoggerAPI.AddStringToBuffer(pData:=#vDataString[0], udLen:=length + 1); 
 
 END_FUNCTION
 

@@ -26,7 +26,6 @@
 	SharedCommandTable = "true"
 	Objectsize         = "(810,360)">
 	<Channels>
-		<Server Name="sData" GUID="{CD7BECBD-65A1-4857-B038-B1F70CDB5E66}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
 		<Server Name="sIPAddrIXON" GUID="{9CB96FC5-4D9E-4E2F-9B1F-5647047B2EF1}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
 		<Server Name="sIPAddrPLC" GUID="{798E83DD-2CBF-44A1-B3E3-7D38B77EF7CC}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
 		<Server Name="sPasswordIXON" GUID="{85E29B6D-2B14-4EB4-82C1-100A810AF106}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
@@ -39,7 +38,6 @@
 		<Client Name="ST_IPAddrIXON" Required="true" Internal="true"/>
 		<Client Name="ST_IPAddrPLC" Required="true" Internal="true"/>
 		<Client Name="ST_PasswordIXON" Required="true" Internal="true"/>
-		<Client Name="ST_SendData" Required="true" Internal="true"/>
 	</Channels>
 	<Separators>
 		<Servers>
@@ -101,18 +99,6 @@
 					<Client Name="SingleRealloc" Value="1"/>
 				</Channels>
 			</Object>
-			<Object
-				Name       = "ST_SendData"
-				GUID       = "{F2748B89-9CE7-4D65-97EB-2774AB8B6196}"
-				Class      = "String"
-				Position   = "(210,960)"
-				Visualized = "true"
-				Remotely   = "true">
-				<Channels>
-					<Server Name="Data"/>
-					<Client Name="SingleRealloc" Value="1"/>
-				</Channels>
-			</Object>
 		</Components>
 		<Comments>
 		</Comments>
@@ -126,8 +112,6 @@
 			<Connection Source="_base._TCPIPClient" Destination="this._TCPIPClient" Vertices="(218,210),(38,210),"/>
 			<Connection Source="this.ST_IPAddrIXON" Destination="ST_IPAddrIXON.Data"/>
 			<Connection Source="this.sIPAddrIXON" Destination="ST_IPAddrIXON.Data" Vertices="(1096,510),(586,600),"/>
-			<Connection Source="this.ST_SendData" Destination="ST_SendData.Data"/>
-			<Connection Source="this.sData" Destination="ST_SendData.Data" Vertices="(1096,930),(586,1050),"/>
 			<Connection Source="this.ST_PasswordIXON" Destination="ST_PasswordIXON.Data"/>
 			<Connection Source="this.sPasswordIXON" Destination="ST_PasswordIXON.Data" Vertices="(1096,630),(586,900),"/>
 			<Connection Source="this.ST_IPAddrPLC" Destination="ST_IPAddrPLC.Data"/>
@@ -166,13 +150,11 @@ IXON_LoggerAPI_Interface : CLASS
 	sReconnectDelay 	: SvrCh_UDINT;
 	sTCPStep 	: SvrCh_teUSER_TCP_STEPS_PTofCls_IXON_LoggerAPI_Interface;
 	sSndCnt 	: SvrCh_DINT;
-	sData 	: SvrChCmd_UDINT;
 	sRcvCnt 	: SvrCh_DINT;
   //Clients:
 	_StdLib 	: CltChCmd__StdLib;
 	ST_IPAddrIXON 	: CltChCmd_String;
 	ST_PasswordIXON 	: CltChCmd_String;
-	ST_SendData 	: CltChCmd_String;
 	ST_IPAddrPLC 	: CltChCmd_String;
   //Variables:
 		vSendData : ARRAY [0..SND_ARRAY_SIZE-1, 0..SND_DATA_ARRAY_SIZE-1] OF CHAR;
@@ -192,6 +174,7 @@ IXON_LoggerAPI_Interface : CLASS
 		vIntError 	: DINT;
 		vConnectData : ARRAY [0..100] OF CHAR;
 
+		vSendRepeat 	: DINT;
   //Functions:
 	
 	FUNCTION VIRTUAL GLOBAL Init;
@@ -208,6 +191,12 @@ IXON_LoggerAPI_Interface : CLASS
 		VAR_INPUT
 			pData 	: ^void;			//! <Variable Comment="Pointer to Data" Name="Response.pData"/>
 			udsize 	: UDINT;			//! <Variable Comment="Size of Data" Name="Response.udsize"/>
+		END_VAR;
+	
+	FUNCTION GLOBAL AddStringToBuffer
+		VAR_INPUT
+			pData 	: ^void;
+			udLen 	: UDINT;
 		END_VAR;
 	
 	FUNCTION VIRTUAL GLOBAL sIPAddrIXON::Read
@@ -248,19 +237,6 @@ IXON_LoggerAPI_Interface : CLASS
 		VAR_OUTPUT
 			result (EAX) 	: UDINT;
 		END_VAR;
-	
-	FUNCTION VIRTUAL GLOBAL sData::Read
-		VAR_OUTPUT
-			output (EAX) 	: UDINT;
-		END_VAR;
-	
-	FUNCTION VIRTUAL GLOBAL sData::Write
-		VAR_INPUT
-			input (EAX) 	: UDINT;
-		END_VAR
-		VAR_OUTPUT
-			result (EAX) 	: UDINT;
-		END_VAR;
   //Tables:
 	FUNCTION @STD
 		VAR_OUTPUT
@@ -280,7 +256,7 @@ FUNCTION GLOBAL TAB IXON_LoggerAPI_Interface::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_IXON_LOGGERAPI_INTERFACE
 0$UINT, 0$UINT, (SIZEOF(::IXON_LoggerAPI_Interface))$UINT, 
-9$UINT, 5$UINT, 0$UINT, 
+8$UINT, 4$UINT, 0$UINT, 
 TO_UDINT(357781282), "IXON_LoggerAPI_Interface", //Class
 TO_UDINT(670188634), "_TCPIPClientInterface", 1$UINT, 1$UINT, //Baseclass
 //Servers:
@@ -291,13 +267,11 @@ TO_UDINT(670188634), "_TCPIPClientInterface", 1$UINT, 1$UINT, //Baseclass
 (::IXON_LoggerAPI_Interface.sReconnectDelay.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(3136527153), "sReconnectDelay", 
 (::IXON_LoggerAPI_Interface.sTCPStep.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2359729525), "sTCPStep", 
 (::IXON_LoggerAPI_Interface.sSndCnt.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2262743984), "sSndCnt", 
-(::IXON_LoggerAPI_Interface.sData.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(62096333), "sData", 
 (::IXON_LoggerAPI_Interface.sRcvCnt.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(1325544368), "sRcvCnt", 
 //Clients:
 (::IXON_LoggerAPI_Interface._StdLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(3689364044), "_StdLib", TO_UDINT(3689364044), "_StdLib", 0$UINT, 0$UINT, 
 (::IXON_LoggerAPI_Interface.ST_IPAddrIXON.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2662148250), "ST_IPAddrIXON", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::IXON_LoggerAPI_Interface.ST_PasswordIXON.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(159909997), "ST_PasswordIXON", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
-(::IXON_LoggerAPI_Interface.ST_SendData.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2018924793), "ST_SendData", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::IXON_LoggerAPI_Interface.ST_IPAddrPLC.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(4063775470), "ST_IPAddrPLC", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 END_FUNCTION
 
@@ -399,18 +373,6 @@ FUNCTION IXON_LoggerAPI_Interface::@STD
 		ret_code	:= C_OUTOF_NEAR;
 		RETURN;
 	END_IF;
-	_memcpy((#vmt.CmdTable)$^USINT, sData.pMeth, SIZEOF(CMDMETH));
-	vmt.CmdTable.nCmds		:= nSTDCMD;
-	vmt.CmdTable.Read		:= #sData::Read();
-	vmt.CmdTable.Write		:= #sData::Write();
-	sData.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
-
-	IF sData.pMeth THEN
-		ret_code	:= C_OK;
-	ELSE
-		ret_code	:= C_OUTOF_NEAR;
-		RETURN;
-	END_IF;
 
 END_FUNCTION
 
@@ -443,13 +405,6 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::CyWork
     length : UDINT;
     i : INT;
   END_VAR
-
-
-  if ST_SendData.GetLength() > 0 then
-    ST_SendData.GetDataAt(pData:=#vSendData[vSendDataIndex][0], udSize:=ST_SendData.GetLength(), udAt:=0);
-    ST_SendData.Clear();
-    vSendDataIndex += 1;
-  end_if;
   
 
   // ==========================================================================
@@ -572,13 +527,14 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::CyWork
       if retCode = 0 then
         for i := 0 to SND_ARRAY_SIZE - 2 do
           vSendData[i] := vSendData[i + 1];
-          _strcpy(dest:=#vSendData[SND_ARRAY_SIZE - 1][0], src:="");
         end_for;
+        _strcpy(dest:=#vSendData[SND_ARRAY_SIZE - 1][0], src:="");
         vSendDataIndex -= 1;
 
         sSndCnt += 1;
         vTimeMark := ops.tAbsolute;
         vTimeMark2 := ops.tAbsolute;
+        vSendRepeat := 0;
         sTCPStep := UTS_WaitData; //UTS_WaitSendData;
       else
         vTimeMark := ops.tAbsolute;
@@ -614,7 +570,12 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::CyWork
     UTS_Error:
       if vIntError = -2 & (ops.tAbsolute - vTimeMark) > sReconnectDelay then //Connect error 
         sTCPStep := UTS_Connect;
-      ELSif vIntError <= -11 then //IXON Connect error 
+      elsif vIntError = -3 then //Send error, retry 3 times, then stay in error
+        vSendRepeat := vSendRepeat + 1;
+        if vSendRepeat < 3 then
+          sTCPStep := UTS_SendData;
+        end_if;
+      elsif vIntError <= -11 then //IXON Connect error 
         sTCPStep := UTS_DISConnect;
       end_if;
 
@@ -714,31 +675,6 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::sPasswordIXON::Write
 END_FUNCTION
 
 
-FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::sData::Read
-	VAR_OUTPUT
-		output (EAX) 	: UDINT;
-	END_VAR
-
-	sData := ST_SendData.Data.Read();
-	output := sData;
-
-END_FUNCTION
-
-
-FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::sData::Write
-	VAR_INPUT
-		input (EAX) 	: UDINT;
-	END_VAR
-	VAR_OUTPUT
-		result (EAX) 	: UDINT;
-	END_VAR
-
-	sData := input;
-	result := (ST_SendData.Data.Write(sData))$UDINT;
-
-END_FUNCTION
-
-
 FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::sIPAddrPLC::Read
 	VAR_OUTPUT
 		output (EAX) 	: UDINT;
@@ -761,4 +697,26 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI_Interface::sIPAddrPLC::Write
 	sIPAddrPLC := input;
 	result := (ST_IPAddrPLC.Data.Write(sIPAddrPLC))$UDINT;
 
+END_FUNCTION
+
+
+FUNCTION GLOBAL IXON_LoggerAPI_Interface::AddStringToBuffer
+	VAR_INPUT
+		pData 	: ^void;
+		udLen 	: UDINT;
+	END_VAR
+  VAR
+  	i : DINT;
+  END_VAR
+  
+  if vSendDataIndex <= SND_ARRAY_SIZE - 1 then
+    _StdLib.memcpy(dest:=#vSendData[vSendDataIndex][0], source:=pData, size:=udLen);
+    vSendDataIndex += 1;
+  else
+    //Move buffer 1 position and add string at end of buffer
+    for i := 0 to SND_ARRAY_SIZE - 2 do
+      vSendData[i] := vSendData[i + 1];
+    end_for;
+    _StdLib.memcpy(dest:=#vSendData[SND_ARRAY_SIZE - 1][0], source:=pData, size:=udLen);
+  end_if;
 END_FUNCTION

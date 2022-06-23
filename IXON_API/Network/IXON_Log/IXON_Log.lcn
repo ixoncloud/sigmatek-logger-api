@@ -35,7 +35,7 @@
 				<Server Name="sStringName5"/>
 				<Server Name="sTriggerName" Value="&quot;TrigBatch&quot;"/>
 				<Client Name="ocSigCLib"/>
-				<Client Name="ToString"/>
+				<Client Name="ToIXON_LoggerAPI"/>
 			</Channels>
 			<!-- List of Networks in this component -->
 			<Networks>
@@ -784,7 +784,7 @@
 				<Server Name="sValue8"/>
 				<Server Name="sValue9"/>
 				<Client Name="ocSigCLib"/>
-				<Client Name="ToString"/>
+				<Client Name="ToIXON_LoggerAPI"/>
 			</Channels>
 			<!-- List of Networks in this component -->
 			<Networks>
@@ -1479,7 +1479,6 @@
 								<Server Name="ErrorCode"/>
 								<Server Name="ErrorGroup"/>
 								<Server Name="ErrorState"/>
-								<Server Name="sData"/>
 								<Server Name="sIPAddrIXON" Value="&quot;192.168.150.1&quot;"/>
 								<Server Name="sIPAddrPLC" Value="&quot;192.168.150.10&quot;"/>
 								<Server Name="sPasswordIXON" Value="&quot;1234&quot;"/>
@@ -1639,50 +1638,6 @@
 												</Network>
 											</Networks>
 										</Object>
-										<Object Name="ST_SendData" GUID="{F2748B89-9CE7-4D65-97EB-2774AB8B6196}" Class="String">
-											<Channels>
-												<Server Name="Data"/>
-												<Client Name="SingleRealloc" Value="1"/>
-											</Channels>
-											<!-- List of Networks in this component -->
-											<Networks>
-												<Network>
-													<!-- List of Components in this network -->
-													<Components>
-														<Object Name="_base" GUID="{B9D2D328-1416-469A-BE13-9F6CBBB1958D}" Class="StringInternal">
-															<Channels>
-																<Server Name="Data"/>
-																<Client Name="DataBuffer"/>
-																<Client Name="SingleRealloc" Value="1"/>
-															</Channels>
-															<!-- List of Networks in this component -->
-															<Networks>
-																<Network>
-																	<!-- List of Components in this network -->
-																	<Components>
-																		<Object Name="_base" GUID="{6CBDDE57-D222-420A-BC45-D2266096244E}" Class="VirtualBaseInit">
-																			<Channels>
-																				<Server Name="Data"/>
-																			</Channels>
-																		</Object>
-																	</Components>
-																	<Connections>
-																	</Connections>
-																</Network>
-															</Networks>
-														</Object>
-														<Object Name="MerkerEx0" GUID="{53955FF7-8ABE-4B49-B914-227100C3FDEF}" Class="MerkerEx">
-															<Channels>
-																<Server Name="m_udLength"/>
-																<Client Name="ThreadSafe" Value="0"/>
-															</Channels>
-														</Object>
-													</Components>
-													<Connections>
-													</Connections>
-												</Network>
-											</Networks>
-										</Object>
 									</Components>
 									<Connections>
 									</Connections>
@@ -1695,13 +1650,30 @@
 				</Network>
 			</Networks>
 		</Object>
+		<Object
+			Name       = "Pulse1"
+			GUID       = "{CBBDF137-4B6C-4AD2-8A77-394621A8DAFF}"
+			Class      = "Pulse"
+			Position   = "(1680,60)"
+			Visualized = "false"
+			CyclicTime = "500 ms">
+			<Channels>
+				<Server Name="ClassSvr"/>
+				<Client Name="PulseOut1"/>
+				<Client Name="PulseOut2"/>
+				<Client Name="PulseOut3"/>
+			</Channels>
+		</Object>
 	</Components>
 	<Comments>
 	</Comments>
 	<!-- List of Connections in this network -->
 	<Connections>
-		<Connection Source="BatchIXONLog.ToString" Destination="IXON_LoggerAPI1.sData" Vertices="(1680,570),(676,570),"/>
-		<Connection Source="GrippersIXONLog.ToString" Destination="IXON_LoggerAPI1.sData" Vertices="(1020,690),(676,570),"/>
+		<Connection Source="BatchIXONLog.ToIXON_LoggerAPI" Destination="IXON_LoggerAPI1.sData" Vertices="(1680,570),(676,570),"/>
+		<Connection Source="Pulse1.PulseOut1" Destination="GrippersIXONLog.sCmdConvert" Vertices="(1680,150),(1546,930),"/>
+		<Connection Source="GrippersIXONLog.ToIXON_LoggerAPI" Destination="IXON_LoggerAPI1.sData" Vertices="(1020,690),(676,570),"/>
+		<Connection Source="Pulse1.PulseOut2" Destination="GrippersIXONLog.sValue1" Vertices="(1680,210),(1546,1110),"/>
+		<Connection Source="Pulse1.PulseOut3" Destination="BatchIXONLog.sCmdConvert" Vertices="(1680,270),(2206,870),"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

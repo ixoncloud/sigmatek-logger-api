@@ -14,7 +14,6 @@
 		<ChildVar Name="sReconnectDelay"/>
 		<ChildVar Name="sTCPStep"/>
 		<ChildVar Name="sSndCnt"/>
-		<ChildVar Name="sData"/>
 		<ChildVar Name="sRcvCnt"/>
 		<ChildVar Name="ST_IPAddrIXON">
 			<ChildVar Name="_base"/>
@@ -29,12 +28,6 @@
 			<ChildVar Name="MerkerEx0"/>
 			<ChildVar Name="SingleRealloc"/>
 		</ChildVar>
-		<ChildVar Name="ST_SendData">
-			<ChildVar Name="_base"/>
-			<ChildVar Name="Data"/>
-			<ChildVar Name="MerkerEx0"/>
-			<ChildVar Name="SingleRealloc"/>
-		</ChildVar>
 		<ChildVar Name="_TCPIPClient"/>
 		<ChildVar Name="_StdLib"/>
 		<ChildVar Name="vSendData">
@@ -42,7 +35,7 @@
 				Name       = "[0]"
 				Array      = "1"
 				ArrayStart = "0"
-				ArrayEnd   = "51">
+				ArrayEnd   = "11">
 				<ChildVar Name="[0]"/>
 				<ChildVar Name="[1]"/>
 				<ChildVar Name="[2]"/>
@@ -189,6 +182,7 @@
 			<ChildVar Name="[29]"/>
 			<ChildVar Name="[30]"/>
 		</ChildVar>
+		<ChildVar Name="vSendRepeat"/>
 	</Variable>
 	<Variable Name="GrippersIXONLog.sCmdConvert"/>
 	<Variable Name="EfficiencyIXONLog.sCmdConvert"/>

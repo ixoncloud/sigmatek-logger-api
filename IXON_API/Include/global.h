@@ -16,10 +16,6 @@
 #include <MultiTaskTypes.h>
 #include "..\Class\StringInternal\StringDefs.h"
 #include <lsl_st_tcp_user.h>
-#include <GraphicTypes.h>
-#include <St_graph.h>
-#include <St_grconst.h>
-#include <File_IOTypes.h>
 
 #include "unit.h"
 #include "UserDef.h"
