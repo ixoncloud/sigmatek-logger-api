@@ -2,12 +2,12 @@
 <Project
 	Version            = "13"
 	Name               = "IXON_API"
-	OnlineConnection   = "TSY021_1"
+	OnlineConnection   = "IP Lars Local"
 	SolutionType       = "Large"
 	WriteSrvListOnSave = "true"
 	CLASSType          = "true">
 	<OnlineConnectionInfo>
-		<TCPIP ConfigName="TSY021_1" BUS="3" Password="" IP="10.100.3.19" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
+		<TCPIP ConfigName="IP Lars Local" BUS="3" Password="" IP="127.0.0.1" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
 	</OnlineConnectionInfo>
 	<HeaderFiles>
 		<File Path=".\Include\unit.h"/>
@@ -52,11 +52,6 @@
 		<File Path=".\Class\_TCPIPClient\_TCPIPClient.h"/>
 		<File Path=".\Class\_TCPIPClient\SalamanderDelay.h"/>
 		<File Path=".\Class\_TCPIPClient\lsl_st_ssl_user.h"/>
-		<File Path=".\GraphicTypes.h" Global="true"/>
-		<File Path=".\St_graph.h" Global="true"/>
-		<File Path=".\St_grconst.h" Global="true"/>
-		<File Path=".\Source\code\OsiBase.h"/>
-		<File Path=".\File_IOTypes.h" Global="true"/>
 	</HeaderFiles>
 	<ClassFiles>
 		<File Path=".\Source\code\OsiBaseNew.st"/>
@@ -92,14 +87,9 @@
 		<File Path=".\Class\_TCPIPClientInterface\_TCPIPClientInterface.st"/>
 		<File Path=".\Class\IXON_LoggerAPI_Interface\IXON_LoggerAPI_Interface.st"/>
 		<File Path=".\Class\IXON_LoggerAPI\IXON_LoggerAPI.st"/>
-		<File Path=".\Source\code\OsiBase.st"/>
-		<File Path=".\Class\_FileSys\_FileSys.st"/>
 		<File Path=".\Class\cIXONConv5Int5Str\cIXONConv5Int5Str.st"/>
-		<File Path=".\Class\File_IO\File_IO.st"/>
-		<File Path=".\Class\RAMex\RAMex.st"/>
-		<File Path=".\Class\StringRAM\StringRAM.st"/>
-		<File Path=".\Class\System\System.st"/>
 		<File Path=".\Class\cIXONConv10Value\cIXONConv10Value.st"/>
+		<File Path=".\Class\Pulse\Pulse.st"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\IXON_Log\IXON_Log.lcn"/>
@@ -141,17 +131,13 @@
 	<SigmatekFolders>
 		<OSInterfaceFolders>
 			<Folder Name="old">
-				<Class Name="File_IO"/>
-				<Class Name="System"/>
 			</Folder>
 		</OSInterfaceFolders>
 		<Folder Name="System">
 			<Folder Name="Memory">
 				<Class Name="MerkerEx"/>
-				<Class Name="RAMex"/>
 				<Class Name="String"/>
 				<Class Name="StringInternal"/>
-				<Class Name="StringRAM"/>
 				<Class Name="VirtualBaseInit"/>
 			</Folder>
 		</Folder>

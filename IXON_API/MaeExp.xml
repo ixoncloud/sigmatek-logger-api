@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<File CRC="8E366FCD" Version="1.1">
+<File CRC="F0643207" Version="1.1">
 	<Classes>
 		<Class
 			Name     = "_TCPIPClient"
@@ -99,7 +99,6 @@
 				<Server Name="sIPAddrIXON" Datatype="STRING" Guid="17637C41-D313-4E37-94DD-E3B069963481" WriteProtected="false"/>
 				<Server Name="sIPAddrPLC" Datatype="STRING" Guid="DC20E747-ACC1-40A1-AEA9-56446F3CB2F8" WriteProtected="false"/>
 				<Server Name="sPasswordIXON" Datatype="STRING" Guid="A3E8519A-7F50-4074-8FEC-F80C849D5529" WriteProtected="false"/>
-				<Server Name="sData" Datatype="STRING" Guid="2AC21450-19E0-4156-891A-62A63DBB9C04" WriteProtected="false"/>
 			</Servers>
 			<Objects>
 				<Object Name="_TCPIPClient1" Datatype="_TCPIPClient" Guid="96D69589-595B-4626-87AA-30E08C7643FF"/>
@@ -110,7 +109,7 @@
 			Name     = "IXON_LoggerAPI_Interface"
 			Datatype = "DINT"
 			Base     = "_TCPIPClientInterface"
-			Size     = "21904"
+			Size     = "21884"
 			Guid     = "6AF6263F-BF0F-417D-A26B-4288044BDBBA">
 			<Types>
 				<Type Name="teUSER_TCP_STEPS" Datatype="UDINT" TypeId="ENUM">
@@ -135,13 +134,11 @@
 				<Server Name="sSendDelay" Datatype="UDINT" Guid="C2BC30EB-200C-4EB9-8A3E-5719235E9223" WriteProtected="false"/>
 				<Server Name="sReconnectDelay" Datatype="UDINT" Guid="D95B0779-3A9B-4210-8C42-379568F6C3AB" WriteProtected="false"/>
 				<Server Name="sTCPStep" Datatype="IXON_LoggerAPI_Interface::teUSER_TCP_STEPS" Guid="ACE1855D-C7BA-4F13-808F-C0AD46DC9E0E" WriteProtected="false"/>
-				<Server Name="sData" Datatype="STRING" Guid="CD7BECBD-65A1-4857-B038-B1F70CDB5E66" WriteProtected="false"/>
 			</Servers>
 			<Objects>
 				<Object Name="ST_IPAddrIXON" Datatype="String" Guid="E49A65E0-4286-48BA-9FA8-8BE264404598"/>
 				<Object Name="ST_IPAddrPLC" Datatype="String" Guid="9380FF98-48E8-4706-8849-F0105D5BD7B2"/>
 				<Object Name="ST_PasswordIXON" Datatype="String" Guid="73AFCC93-C9EF-43C7-8BD6-0FAA4DC69D31"/>
-				<Object Name="ST_SendData" Datatype="String" Guid="F2748B89-9CE7-4D65-97EB-2774AB8B6196"/>
 			</Objects>
 		</Class>
 		<Class

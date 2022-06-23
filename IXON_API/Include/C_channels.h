@@ -98,13 +98,6 @@ typedef struct CltChCmd_MerkerEx
     MerkerEx *pCmd;
   } CltChCmd_MerkerEx;
 
-typedef struct CltChCmd_RAMex 
-  {
-    struct SvrChCmd_UDINT *pCh;
-    UDINT dData;
-    RAMex *pCmd;
-  } CltChCmd_RAMex;
-
 typedef struct CltChCmd_SigCLib 
   {
     struct SvrChCmd_DINT *pCh;
@@ -118,13 +111,6 @@ typedef struct CltChCmd_String
     UDINT dData;
     String *pCmd;
   } CltChCmd_String;
-
-typedef struct CltChCmd_VirtualBaseInit 
-  {
-    struct SvrChCmd_UDINT *pCh;
-    UDINT dData;
-    VirtualBaseInit *pCmd;
-  } CltChCmd_VirtualBaseInit;
 
 typedef struct SvrCh__FSM_TCPIP_CLIENT_PTofCls__TCPIPClient 
   {

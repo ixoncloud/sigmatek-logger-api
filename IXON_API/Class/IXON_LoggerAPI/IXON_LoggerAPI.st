@@ -19,7 +19,7 @@
 	Objectsize         = "(510,360)">
 	<Channels>
 		<Server Name="ClassSvr" GUID="{11BE1637-F60C-4AC8-9CA6-3612C9353224}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
-		<Server Name="sData" GUID="{2AC21450-19E0-4156-891A-62A63DBB9C04}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
+		<Server Name="sData" GUID="{BCDE3885-EF59-4D05-B2DF-D05B791853AA}" Class="IXON_LoggerAPI_Interface" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="sIPAddrIXON" GUID="{17637C41-D313-4E37-94DD-E3B069963481}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
 		<Server Name="sIPAddrPLC" GUID="{DC20E747-ACC1-40A1-AEA9-56446F3CB2F8}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
 		<Server Name="sPasswordIXON" GUID="{A3E8519A-7F50-4074-8FEC-F80C849D5529}" Class="String" Visualized="true" Remotely="true" Initialize="true" WriteProtected="false" Retentive="false" Comment="use this channel to access the string functions"/>
@@ -73,7 +73,6 @@
 					<Server Name="ErrorCode"/>
 					<Server Name="ErrorGroup"/>
 					<Server Name="ErrorState"/>
-					<Server Name="sData"/>
 					<Server Name="sIPAddrIXON"/>
 					<Server Name="sIPAddrPLC"/>
 					<Server Name="sPasswordIXON"/>
@@ -99,7 +98,7 @@
 			<Connection Source="this.sPasswordIXON" Destination="MyTCPIPClient1.sPasswordIXON" Vertices="(1898,390),(1726,720),"/>
 			<Connection Source="this.sState" Destination="MyTCPIPClient1.State" Vertices="(1898,450),(1726,300),"/>
 			<Connection Source="this.sIPAddrPLC" Destination="MyTCPIPClient1.sIPAddrPLC" Vertices="(1898,330),(1726,660),"/>
-			<Connection Source="this.sData" Destination="MyTCPIPClient1.sData" Vertices="(1898,510),(1726,1080),"/>
+			<Connection Source="this.sData" Destination="MyTCPIPClient1.ClassSvr" Vertices="(1898,510),(1726,240),"/>
 		</Connections>
 		<!-- Headerfiles -->
 		<Options>
@@ -114,7 +113,7 @@ IXON_LoggerAPI : CLASS
 	sIPAddrPLC 	: SvrChCmd_UDINT;
 	sPasswordIXON 	: SvrChCmd_UDINT;
 	sState 	: SvrCh__STATE_TCPIPC_INTF_PTofCls__TCPIPClientInterface;
-	sData 	: SvrChCmd_UDINT;
+	sData 	: SvrChCmd_DINT;
   //Clients:
 	_TCPIPClient1 	: CltChCmd__TCPIPClient;
 	MyTCPIPClient1 	: CltChCmd_IXON_LoggerAPI_Interface;
@@ -167,15 +166,7 @@ IXON_LoggerAPI : CLASS
 	
 	FUNCTION VIRTUAL GLOBAL sData::Read
 		VAR_OUTPUT
-			output (EAX) 	: UDINT;
-		END_VAR;
-	
-	FUNCTION VIRTUAL GLOBAL sData::Write
-		VAR_INPUT
-			input (EAX) 	: UDINT;
-		END_VAR
-		VAR_OUTPUT
-			result (EAX) 	: UDINT;
+			output (EAX) 	: DINT;
 		END_VAR;
   //Tables:
 	FUNCTION @STD
@@ -205,7 +196,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::IXON_LoggerAPI.sIPAddrPLC.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(4091093539), "sIPAddrPLC", 
 (::IXON_LoggerAPI.sPasswordIXON.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(3939909182), "sPasswordIXON", 
 (::IXON_LoggerAPI.sState.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2839362732), "sState", 
-(::IXON_LoggerAPI.sData.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(62096333), "sData", 
+(::IXON_LoggerAPI.sData.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(62096333), "sData", 
 //Clients:
 (::IXON_LoggerAPI._TCPIPClient1.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3456595437), "_TCPIPClient1", TO_UDINT(1778057824), "_TCPIPClient", 1$UINT, 1$UINT, 
 (::IXON_LoggerAPI.MyTCPIPClient1.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1181618911), "MyTCPIPClient1", TO_UDINT(357781282), "IXON_LoggerAPI_Interface", 0$UINT, 0$UINT, 
@@ -285,7 +276,6 @@ FUNCTION IXON_LoggerAPI::@STD
 	_memcpy((#vmt.CmdTable)$^USINT, sData.pMeth, SIZEOF(CMDMETH));
 	vmt.CmdTable.nCmds		:= nSTDCMD;
 	vmt.CmdTable.Read		:= #sData::Read();
-	vmt.CmdTable.Write		:= #sData::Write();
 	sData.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
 
 	IF sData.pMeth THEN
@@ -321,31 +311,6 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI::sIPAddrIXON::Write
 
 	sIPAddrIXON := input;
 	result := (MyTCPIPClient1.sIPAddrIXON.Write(sIPAddrIXON))$UDINT;
-
-END_FUNCTION
-
-
-FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI::sData::Read
-	VAR_OUTPUT
-		output (EAX) 	: UDINT;
-	END_VAR
-
-	sData := MyTCPIPClient1.sData.Read();
-	output := sData;
-
-END_FUNCTION
-
-
-FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI::sData::Write
-	VAR_INPUT
-		input (EAX) 	: UDINT;
-	END_VAR
-	VAR_OUTPUT
-		result (EAX) 	: UDINT;
-	END_VAR
-
-	sData := input;
-	result := (MyTCPIPClient1.sData.Write(sData))$UDINT;
 
 END_FUNCTION
 
@@ -406,5 +371,16 @@ FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI::sIPAddrPLC::Write
 
 	sIPAddrPLC := input;
 	result := (MyTCPIPClient1.sIPAddrPLC.Write(sIPAddrPLC))$UDINT;
+
+END_FUNCTION
+
+
+FUNCTION VIRTUAL GLOBAL IXON_LoggerAPI::sData::Read
+	VAR_OUTPUT
+		output (EAX) 	: DINT;
+	END_VAR
+
+	sData := MyTCPIPClient1.ClassSvr.Read();
+	output := sData;
 
 END_FUNCTION

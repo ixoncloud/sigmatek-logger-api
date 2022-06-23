@@ -60,7 +60,7 @@
 		<Client Name="Name8" Required="true" Internal="true"/>
 		<Client Name="Name9" Required="true" Internal="true"/>
 		<Client Name="ocSigCLib" Required="false" Internal="false"/>
-		<Client Name="ToString" Required="true" Internal="false"/>
+		<Client Name="ToIXON_LoggerAPI" Required="true" Internal="false"/>
 		<Client Name="TriggerName" Required="true" Internal="true"/>
 	</Channels>
 	<Separators>
@@ -265,7 +265,6 @@ cIXONConv10Value : CLASS
 	sName10 	: SvrChCmd_UDINT;
 	sValue10 	: SvrCh_DINT;
   //Clients:
-	ToString 	: CltChCmd_VirtualBaseInit;
 	Name3 	: CltChCmd_String;
 	Name2 	: CltChCmd_String;
 	Name1 	: CltChCmd_String;
@@ -276,8 +275,9 @@ cIXONConv10Value : CLASS
 	Name8 	: CltChCmd_String;
 	Name9 	: CltChCmd_String;
 	Name10 	: CltChCmd_String;
-	ocSigCLib 	: CltChCmd_SigCLib;
 	TriggerName 	: CltChCmd_String;
+	ToIXON_LoggerAPI 	: CltChCmd_IXON_LoggerAPI_Interface;
+	ocSigCLib 	: CltChCmd_SigCLib;
   //Variables:
 		vNameString : ARRAY [0..MAX_NAME_LENGTH-1] OF CHAR;
 
@@ -458,8 +458,8 @@ cIXONConv10Value : CLASS
 END_CLASS;
 
 #pragma using String
+#pragma usingLtd IXON_LoggerAPI_Interface
 #pragma usingLtd SigCLib
-#pragma usingLtd VirtualBaseInit
 
 
 //}}LSL_DECLARATION
@@ -498,7 +498,6 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::cIXONConv10Value.sName10.pMeth)$UINT, _CH_SVR_OBJ$UINT, 2#0000000001000000$UINT, TO_UDINT(540790372), "sName10", 
 (::cIXONConv10Value.sValue10.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(3448708325), "sValue10", 
 //Clients:
-(::cIXONConv10Value.ToString.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3649696585), "ToString", TO_UDINT(3232495061), "VirtualBaseInit", 1$UINT, 3$UINT, 
 (::cIXONConv10Value.Name3.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1221978792), "Name3", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::cIXONConv10Value.Name2.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1070783038), "Name2", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::cIXONConv10Value.Name1.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2799405956), "Name1", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
@@ -509,8 +508,9 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::cIXONConv10Value.Name8.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3741791008), "Name8", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::cIXONConv10Value.Name9.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2818573238), "Name9", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
 (::cIXONConv10Value.Name10.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(514343827), "Name10", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
-(::cIXONConv10Value.ocSigCLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(3653330470), "ocSigCLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 32$UINT, 
 (::cIXONConv10Value.TriggerName.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2591045562), "TriggerName", TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 
+(::cIXONConv10Value.ToIXON_LoggerAPI.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(839802528), "ToIXON_LoggerAPI", TO_UDINT(357781282), "IXON_LoggerAPI_Interface", 0$UINT, 0$UINT, 
+(::cIXONConv10Value.ocSigCLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(3653330470), "ocSigCLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 32$UINT, 
 END_FUNCTION
 
 
@@ -807,8 +807,7 @@ FUNCTION cIXONConv10Value::BuildConfigString
   BuildTrigger(Value := 0);
   
   length := _strlen(src:=#vDataString[0]);
-  ToString.WriteDataOff(udLen := length + 1, udOff := 0, pData := #vDataString[0]);   
-
+  ToIXON_LoggerAPI.AddStringToBuffer(pData:=#vDataString[0], udLen:=length + 1);
 END_FUNCTION
 
 

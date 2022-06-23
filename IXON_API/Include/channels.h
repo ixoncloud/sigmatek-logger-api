@@ -71,11 +71,6 @@ TYPE
     dData : UDINT;
     pCmd : ^MerkerEx;
   END_STRUCT;
-  CltChCmd_RAMex : STRUCT
-    pCh : ^SvrChCmd_UDINT;
-    dData : UDINT;
-    pCmd : ^RAMex;
-  END_STRUCT;
   CltChCmd_SigCLib : STRUCT
     pCh : ^SvrChCmd_DINT;
     dData : DINT;
@@ -85,11 +80,6 @@ TYPE
     pCh : ^SvrChCmd_UDINT;
     dData : UDINT;
     pCmd : ^String;
-  END_STRUCT;
-  CltChCmd_VirtualBaseInit : STRUCT
-    pCh : ^SvrChCmd_UDINT;
-    dData : UDINT;
-    pCmd : ^VirtualBaseInit;
   END_STRUCT;
   SvrCh__FSM_TCPIP_CLIENT_PTofCls__TCPIPClient : STRUCT
     pMeth : ^CHMETH;
